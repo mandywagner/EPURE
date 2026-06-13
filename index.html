@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉPURÉ | For the holistic purist</title>
+    <style>
+        :root {
+            --bg-color: #fdfaf6; /* Soft Beige */
+            --text-color: #4a4238; /* Soft Brown */
+            --accent-olive: #6b705c; /* Olive Green */
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 2rem 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+        nav a { margin: 0 15px; text-decoration: none; color: var(--text-color); }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 10%;
+            gap: 40px;
+        }
+        .hero-text { max-width: 400px; }
+        .hero h1 { font-size: 3rem; font-weight: 300; }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 4rem 10%;
+        }
+        .card { text-align: center; }
+        .card img { width: 100%; height: auto; background: #eee; }
+        .card h3 { font-size: 1rem; margin-top: 10px; }
+
+        /* Button */
+        .btn {
+            border: 1px solid var(--text-color);
+            padding: 10px 25px;
+            display: inline-block;
+            text-decoration: none;
+            color: var(--text-color);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="text-align: center; font-size: 2rem; padding-top: 20px;">ÉPURÉ</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Skincare</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-image">
+            <div style="width: 300px; height: 350px; background: #ddd;"></div> </div>
+        <div class="hero-text">
+            <h2>New in store</h2>
+            <h1>FOR THE HOLISTIC PURIST</h1>
+            <a href="#" class="btn">SHOP NOW</a>
+        </div>
+    </section>
+
+    <section class="product-grid">
+        <div class="card">
+            <div style="height: 250px; background: #ddd;"></div>
+            <h3>Dress Serum</h3>
+            <p>€25.00 EUR</p>
+        </div>
+        <div class="card">
+            <div style="height: 250px; background: #ddd;"></div>
+            <h3>Eau de Puriste</h3>
+            <p>€105.00 EUR</p>
+        </div>
+        <div class="card">
+            <div style="height: 250px; background: #ddd;"></div>
+            <h3>Aromatic Candle</h3>
+            <p>€20.00 EUR</p>
+        </div>
+        <div class="card">
+            <div style="height: 250px; background: #ddd;"></div>
+            <h3>Glow Essence</h3>
+            <p>€55.00 EUR</p>
+        </div>
+    </section>
+<script> document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Intersection Observer for "Fade-in" on Scroll
+    // This makes the product cards appear smoothly as the user explores
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+            }
+        });
+    }, observerOptions);
+
+    // Apply animation to each product card
+    const productCards = document.querySelectorAll('.card');
+    productCards.forEach(card => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(20px)";
+        card.style.transition = "all 0.8s ease-out";
+        observer.observe(card);
+    });
+
+    // 2. Simple "Add to Cart" Interaction
+    // Instead of a clunky alert, we'll log it or show a subtle notification
+    const cartButtons = document.querySelectorAll('.btn-shop');
+    
+    cartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const productName = e.target.closest('.card').querySelector('h3').innerText;
+            showNotification(`${productName} has been added to your ritual.`);
+        });
+    });
+
+    // Helper: Minimalist Toast Notification
+    function showNotification(message) {
+        const toast = document.createElement('div');
+        toast.innerText = message;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.right = '20px';
+        toast.style.padding = '15px 25px';
+        toast.style.backgroundColor = '#6b705c'; // Olive Green
+        toast.style.color = '#fdfaf6'; // Creamy Beige
+        toast.style.borderRadius = '2px';
+        toast.style.zIndex = '1000';
+        document.body.appendChild(toast);
+        
+        setTimeout(() => toast.remove(), 3000);
+    }
+});
+</script>
+</body>
+</html>
