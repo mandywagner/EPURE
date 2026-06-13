@@ -1,0 +1,107 @@
+/* --- Global Styles --- */
+:root {
+    --bg-color: #fdfaf6;        /* Creamy Beige */
+    --text-color: #4a4238;      /* Deep Muted Brown */
+    --olive-green: #6b705c;     /* Muted Olive */
+    --border-color: #e5e1dc;    /* Subtle separator */
+    --font-heading: 'Playfair Display', serif; /* Or use 'Georgia' as a standard fallback */
+    --font-body: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    margin: 0;
+    line-height: 1.8;
+}
+
+/* --- Typography --- */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+/* --- Layout --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* --- Navigation --- */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--olive-green);
+}
+
+/* --- Product Cards --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+    padding: 4rem 0;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.card-image-box {
+    width: 100%;
+    aspect-ratio: 3/4; /* Keeps images uniform */
+    background-color: #f2efeb;
+    margin-bottom: 1.5rem;
+    transition: transform 0.5s ease;
+}
+
+.card-image-box:hover {
+    transform: scale(1.02);
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    margin: 10px 0 5px 0;
+}
+
+.price {
+    font-size: 0.9rem;
+    color: var(--olive-green);
+    margin-bottom: 1rem;
+}
+
+/* --- Luxury Buttons --- */
+.btn-shop {
+    padding: 12px 30px;
+    border: 1px solid var(--text-color);
+    background: transparent;
+    color: var(--text-color);
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.btn-shop:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+}
